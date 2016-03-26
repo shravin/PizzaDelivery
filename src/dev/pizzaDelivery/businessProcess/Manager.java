@@ -11,18 +11,18 @@ public class Manager extends Thread
 		Order order = StoreManager.getInstance().takeOrder();
 		System.out.println("Order procured..");
 		Cook cook = CookPool.getInstance().getCook();
-		try 
-		{
-			if (order != null && cook!=null)
-			{
-				System.out.println("Cook #" + cook.getCookId() + "is cooking: " + cook.getOrderId());;
-				cook.run(order);
-			}
-		} 
-		catch (InterruptedException e) 
-		{
-			e.printStackTrace();
-		}
+//		try
+//		{
+//			if (order != null && cook!=null)
+//			{
+//				System.out.println("Cook #" + cook.getCookId() + "is cooking: " + cook.getOrderId());;
+////				cook.run(order);
+//			}
+//		}
+//		catch (InterruptedException e)
+//		{
+//			e.printStackTrace();
+//		}
 		
 		CookPool.getInstance().putCook(cook);
 	}

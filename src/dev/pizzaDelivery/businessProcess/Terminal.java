@@ -55,6 +55,7 @@ public class Terminal implements Runnable
 
 						if (store.isCloseStore())
 						{
+							System.out.println("Store is closed and hence exiting terminal...");
 							return;
 						}
 						break;
@@ -69,10 +70,8 @@ public class Terminal implements Runnable
 				}
 			}
 		}
-
 		System.out.println("Thank you for placing the order!!");
 		scanner.close();
-		
 	}
 }
 

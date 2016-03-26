@@ -24,10 +24,10 @@ public class Store
         }
     }
 
-    public void closeStore(int terminals) throws InterruptedException
+    public void closeStore() throws InterruptedException
     {
         closeStore = true;
-        for (int i=0;i<terminals;i++)
+        for (int i=0;i<listOfTerminals.size();i++)
         {
             listOfTerminals.get(i).join();
         }
@@ -42,4 +42,5 @@ public class Store
     {
         return closeStore;
     }
+
 }
