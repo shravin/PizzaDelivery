@@ -1,22 +1,22 @@
 package dev.pizzaDelivery.businessProcess;
 
-import dev.pizzaDelivery.domain.Item;
+import java.util.concurrent.BlockingQueue;
 
 public class Cook extends Thread 
 {
-
+	private BlockingQueue<Order> orderForDelivery;
 	int cookId;
-	Item item;
-	int orderId;
-	
+	Order order;
+
 	@Override
 	public void run()  
 	{
 		try
 		{
-			System.out.println("Started cooking item from order id: " + orderId);
-			this.wait(this.getItem().getEatable().getCookingTime() * 100);
-			System.out.println("Cooked item from order id: " + orderId);
+			System.out.println("Started cooking item from order id: " + order.getCustomerId());
+			sleep(order.getTotalCookingTime() * 10);
+			System.out.println("Cooked item from order id: " + order.getCustomerId());
+			orderForDelivery.put(order);
 		} 
 		catch (InterruptedException e) 
 		{
@@ -26,37 +26,15 @@ public class Cook extends Thread
 		
 	}
 
-	
-	public Cook(int cookId) 
+	public Cook(Order order, BlockingQueue<Order> orderListForDelivery)
 	{
 		super();
-		this.cookId = cookId;
+		this.order = order;
+		this.orderForDelivery = orderListForDelivery;
 	}
 
-	public Cook(Item item, int orderId) 
+	public void setOrder(Order order)
 	{
-		super();
-		this.item = item;
-		this.orderId = orderId;
-	}
-
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
-
-	public int getOrderId() {
-		return orderId;
-	}
-
-	public int getCookId() {
-		return cookId;
-	}
-
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+		this.order = order;
 	}
 }

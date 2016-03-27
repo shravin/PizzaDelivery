@@ -67,6 +67,15 @@ public class Terminal implements Runnable
 					case 6:
 						order.printOrder();
 						break;
+					case 7:
+						try
+						{
+							store.getStoreManager().closeStore();
+						} catch (InterruptedException e)
+						{
+							e.printStackTrace();
+						}
+						break;
 				}
 			}
 		}

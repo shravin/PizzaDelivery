@@ -7,7 +7,8 @@ public class PizzaDeliveryMain
 	{
 		Store store = new Store();
 		store.startStore(1);
-		store.closeStore();
+
+//		store.closeStore();
 	}
 
 }

@@ -13,7 +13,7 @@ public class Order
 	int customerId;
 	List<Item> eatables;
 	float price;
-	int lastreference;
+	int lastReference;
 	private State state;
 
 
@@ -26,7 +26,7 @@ public class Order
 	{
 		super();
 		this.customerId = customerId;
-		this.lastreference=0;
+		this.lastReference =0;
 		this.eatables = new ArrayList<Item>();
 		this.setState(new OrderInitialState(this));
 	}
@@ -96,6 +96,16 @@ public class Order
 			cost = cost + eatable.getEatable().getPrice();
 		}
 		return cost;
+	}
+
+	public long getTotalCookingTime()
+	{
+		long time=0;
+		for (Item eatable : this.eatables)
+		{
+			time = time + eatable.getEatable().getCookingTime();
+		}
+		return time;
 	}
 
 

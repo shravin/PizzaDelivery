@@ -3,9 +3,6 @@ package dev.pizzaDelivery.businessProcess;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ravin Somi on 3/26/16.
- */
 public class Store
 {
     private StoreManager storeManager = StoreManager.getInstance();
@@ -27,18 +24,19 @@ public class Store
     public void closeStore() throws InterruptedException
     {
         closeStore = true;
-        for (int i=0;i<listOfTerminals.size();i++)
+        for (Thread listOfTerminal : listOfTerminals)
         {
-            listOfTerminals.get(i).join();
+            listOfTerminal.join();
         }
+        storeManager.closeStore();
     }
 
-    public StoreManager getStoreManager()
+    StoreManager getStoreManager()
     {
         return storeManager;
     }
 
-    public boolean isCloseStore()
+    boolean isCloseStore()
     {
         return closeStore;
     }
